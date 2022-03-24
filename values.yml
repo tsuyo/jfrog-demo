@@ -1,0 +1,12 @@
+artifactory: artifactory
+pipelines:
+  name: jfrog_demo
+gitRepo:
+  name: github_jfrog_demo
+  provider: github
+  path: tsuyo/jfrog-demo
+artifactoryRepo:
+  resolver:
+    name: demo-go
+  targetBinary:
+    name: demo-go

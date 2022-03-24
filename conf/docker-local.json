@@ -1,0 +1,7 @@
+{
+  "projectKey": "_PROJECT",
+  "rclass" : "local",
+  "packageType": "docker",
+  "repoLayoutRef" : "simple-default",
+  "xrayIndex" : true
+}
