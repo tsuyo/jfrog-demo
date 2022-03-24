@@ -1,5 +1,5 @@
 template: true
-valuesFilePath: ./values.yml
+valuesFilePath: ./values-build.yml
 
 resources:
   # GitRepo
@@ -29,7 +29,7 @@ pipelines:
         configuration:
           # sourceLocation: .
           # outputLocation: .
-          # outputFile: "{{ .Values.pipelines.name }}_${run_number}"
+          outputFile: {{ .Values.application.name }}
           resolverRepo: {{ .Values.artifactoryRepo.resolver.name }}
 
           integrations:

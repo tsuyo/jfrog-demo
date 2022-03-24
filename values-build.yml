@@ -1,6 +1,6 @@
 artifactory: artifactory
 pipelines:
-  name: jfrog_demo
+  name: jfrog_demo_build
 gitRepo:
   name: github_jfrog_demo
   provider: github
@@ -10,3 +10,5 @@ artifactoryRepo:
     name: demo-go
   deployer:
     name: demo-go
+application:
+  name: jfrog_demo    

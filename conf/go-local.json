@@ -1,7 +1,8 @@
 {
-  "projectKey": "_PROJECT",
+  "projectKey": "${project}",
+  "key": "${project}-go-local",
   "rclass" : "local",
   "packageType": "go",
   "repoLayoutRef" : "go-default",
-  "xrayIndex" : true
+  "xrayIndex" : "true"
 }
