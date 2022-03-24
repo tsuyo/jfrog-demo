@@ -8,5 +8,5 @@ gitRepo:
 artifactoryRepo:
   resolver:
     name: demo-go
-  targetBinary:
+  deployer:
     name: demo-go

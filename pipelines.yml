@@ -37,15 +37,20 @@ pipelines:
           inputResources:
             - name: {{ .Values.gitRepo.name }}
 
-      # - name: go_publish_binary
-      #   type: GoPublishBinary
-      #   configuration:
-      #     inputSteps:
-      #       - name: go_build
-      #     targetRepository: {{ .Values.artifactoryRepo.targetBinary.name }}
-      #     integrations:
-      #       - name: {{ .Values.artifactory }}
+      - name: go_publish_binary
+        type: GoPublishBinary
+        configuration:
+          forceXrayScan: true
+          autoPublishBuildInfo: true
+          targetRepository: {{ .Values.artifactoryRepo.deployer.name }}
 
+          integrations:
+            - name: {{ .Values.artifactory }}
+          outputResources:
+            - name: {{ .Values.pipelines.name }}
+          inputSteps:
+            - name: go_build
+          
       # - name: publish_build_info
       #   type: PublishBuildInfo
       #   configuration:
