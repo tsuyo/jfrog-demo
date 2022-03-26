@@ -29,6 +29,11 @@ pipelines:
       - name: go_build
         type: GoBuild
         configuration:
+          environmentVariables:
+            GO111MODULE: on
+            CGO_ENABLED: 0
+            GOOS: linux
+            GOARCH: amd64
           # sourceLocation: .
           # outputLocation: .
           outputFile: {{ .Values.application.name }}
