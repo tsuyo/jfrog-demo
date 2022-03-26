@@ -42,7 +42,6 @@ pipelines:
           dockerFileName: {{ .Values.docker.file.name }}
           dockerImageName: {{ .Values.docker.image.name }}
           dockerImageTag: ${run_number}
-          dockerOptions: "--build-arg REG=platform.dev.gcp.tsuyo.org/demo-docker"
 
           integrations:
             - name: {{ .Values.artifactory }}
@@ -52,6 +51,9 @@ pipelines:
         # execution:
           onStart:
             - env
+            - pwd
+            - jfrog rt dl demo-go/jfrog_demo
+            - chmod +x jfrog_demo
             # - echo "[TM] manually login to artifactory"
             # - echo ${int_{{ .Values.artifactory }}_apikey} | docker login --username {{ .Values.artifactoryRepo.username }} --password-stdin ${int_{{ .Values.artifactory }}_url}
 
