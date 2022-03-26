@@ -48,7 +48,8 @@ pipelines:
           inputResources:
             - name: {{ .Values.gitRepo.name }}
             - name: {{ .Values.pipelines.build.name }}
-        # execution:
+
+        execution:
           onStart:
             - env
             - pwd
