@@ -5,6 +5,8 @@ gitRepo:
   name: github_jfrog_demo
   provider: github
   path: tsuyo/jfrog-demo
+  files:
+    include: main.go|go.mod|go.sum
 artifactoryRepo:
   resolver:
     name: demo-go

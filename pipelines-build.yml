@@ -8,6 +8,8 @@ resources:
     configuration:
       gitProvider: {{ .Values.gitRepo.provider }}
       path: {{ .Values.gitRepo.path }}
+      files:
+        include: {{ .Values.gitRepo.files.include }}
       # branches:
       #   include: main
 
