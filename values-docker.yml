@@ -4,9 +4,9 @@ pipelines:
   build:
     name: jfrog_demo_build
 gitRepo:
-  name: github_jfrog_demo
-  # provider: github
-  # path: tsuyo/jfrog-demo
+  name: github_jfrog_demo_docker
+  provider: github
+  path: tsuyo/jfrog-demo
   # branch: main
 artifactoryRepo:
   resolver:
