@@ -8,6 +8,9 @@ $ ./script/create_project.sh -s dev.gcp -p demo
 $ jf rt rc --vars "project=demo" conf/go-local.json
 $ jf rt rc --vars "project=demo" conf/go-remote.json
 $ jf rt rc --vars "project=demo" conf/go.json
+$ jf rt rc --vars "project=demo" conf/docker-local.json
+$ jf rt rc --vars "project=demo" conf/docker-remote.json
+$ jf rt rc --vars "project=demo" conf/docker.json
 ```
 
 Pipelines

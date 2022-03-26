@@ -1,0 +1,25 @@
+artifactory: artifactory
+pipelines:
+  name: jfrog_demo_docker
+  build:
+    name: jfrog_demo_build
+gitRepo:
+  name: github_jfrog_demo
+  # provider: github
+  # path: tsuyo/jfrog-demo
+  # branch: main
+artifactoryRepo:
+  resolver:
+    name: demo-docker
+  deployer:
+    name: demo-docker
+  promote:
+    name: demo-docker-prod-local
+  username: admin
+docker:
+  image:
+    name: platform.dev.gcp.tsuyo.org/demo-docker/jfrog-demo
+    # tag: latest
+  file:
+    location: .
+    name: Dockerfile

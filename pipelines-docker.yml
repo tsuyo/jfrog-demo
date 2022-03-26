@@ -1,0 +1,85 @@
+template: true
+valuesFilePath: ./values-docker.yml
+
+resources:
+  # - name: {{ .Values.gitRepo.name }}
+  #   type: GitRepo
+  #   configuration:
+  #     gitProvider: {{ .Values.gitRepo.provider }}
+  #     path: {{ .Values.gitRepo.path }}
+  #     # branches:
+  #     #   include: {{ .Values.myRepo.branch }}
+
+  # - name: dbp_image
+  #   type: Image
+  #   configuration:
+  #     registry: {{ .Values.myArtifactory.name }}
+  #     sourceRepository: {{ .Values.myArtifactory.pushRepo }}
+  #     imageName: {{ .Values.docker.image.name }}
+  #     imageTag: {{ .Values.docker.image.tag }}
+  #     autoPull: true
+      
+  - name: {{ .Values.pipelines.name }}
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: {{ .Values.artifactory }}
+
+  - name: "{{ .Values.pipelines.name }}_promoted"
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: {{ .Values.artifactory }}      
+
+pipelines:
+  - name: {{ .Values.pipelines.name }}
+    steps:
+      - name: docker_build
+        type: DockerBuild
+        configuration:
+          affinityGroup: {{ .Values.pipelines.name }}
+          dockerFileLocation: {{ .Values.docker.file.location }}
+          dockerFileName: {{ .Values.docker.file.name }}
+          dockerImageName: {{ .Values.docker.image.name }}
+          dockerImageTag: ${run_number}
+          dockerOptions: "--build-arg REG=platform.dev.gcp.tsuyo.org/demo-docker"
+
+          integrations:
+            - name: {{ .Values.artifactory }}
+          inputResources:
+            - name: {{ .Values.gitRepo.name }}
+            - name: {{ .Values.pipelines.build.name }}
+        # execution:
+          onStart:
+            - env
+            # - echo "[TM] manually login to artifactory"
+            # - echo ${int_{{ .Values.artifactory }}_apikey} | docker login --username {{ .Values.artifactoryRepo.username }} --password-stdin ${int_{{ .Values.artifactory }}_url}
+
+      # - name: docker_push
+      #   type: DockerPush
+      #   configuration:
+      #     affinityGroup: {{ .Values.pipelines.name }}
+      #     targetRepository: {{ .Values.artifactoryRepo.deployer.name }}
+      #     integrations:
+      #       - name: {{ .Values.artifactory }}
+      #     inputSteps:
+      #       - name: docker_build
+      #     # outputResources:
+      #     #   - name: dbp_image
+
+      # - name: publish_build_info
+      #   type: PublishBuildInfo
+      #   configuration:
+      #     inputSteps:
+      #       - name: docker_push
+      #     outputResources:
+      #       - name: {{ .Values.pipelines.name }}
+
+      # - name: promote_build
+      #   type: PromoteBuild
+      #   configuration:
+      #     targetRepository: {{ .Values.artifactoryRepo.promote.name }}
+      #     integrations:
+      #       - name: {{ .Values.artifactory }}
+      #     inputResources:
+      #       - name: {{ .Values.pipelines.name }}
+      #     outputResources:
+      #       - name: "{{ .Values.pipelines.name }}_promoted"
