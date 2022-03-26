@@ -41,6 +41,7 @@ pipelines:
 
           integrations:
             - name: {{ .Values.artifactory }}
+
           inputResources:
             - name: {{ .Values.gitRepo.name }}
 
@@ -53,10 +54,11 @@ pipelines:
 
           integrations:
             - name: {{ .Values.artifactory }}
-          outputResources:
-            - name: {{ .Values.pipelines.name }}
+
           inputSteps:
             - name: go_build
+          outputResources:
+            - name: {{ .Values.pipelines.name }}
           
       # - name: publish_build_info
       #   type: PublishBuildInfo

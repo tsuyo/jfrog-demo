@@ -45,14 +45,13 @@ pipelines:
 
           integrations:
             - name: {{ .Values.artifactory }}
+
           inputResources:
             - name: {{ .Values.gitRepo.name }}
             - name: {{ .Values.pipelines.build.name }}
 
         execution:
           onStart:
-            - env
-            - pwd
             - jfrog rt dl demo-go/jfrog_demo ${res_{{ .Values.gitRepo.name }}_resourcePath}/jfrog_demo
             - chmod +x ${res_{{ .Values.gitRepo.name }}_resourcePath}/jfrog_demo
             # - echo "[TM] manually login to artifactory"

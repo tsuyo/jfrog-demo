@@ -1,4 +1,4 @@
-// pipelines trigger: 
+// pipelines trigger: #
 package main
 
 import (
