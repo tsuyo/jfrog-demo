@@ -5,12 +5,12 @@ Artifactory
 ```
 $ jf c use dev.gcp
 $ ./script/create_project.sh -s dev.gcp -p demo
-$ jf rt rc --vars "project=demo" conf/go-local.json
-$ jf rt rc --vars "project=demo" conf/go-remote.json
-$ jf rt rc --vars "project=demo" conf/go.json
-$ jf rt rc --vars "project=demo" conf/docker-local.json
-$ jf rt rc --vars "project=demo" conf/docker-remote.json
-$ jf rt rc --vars "project=demo" conf/docker.json
+$ jf rt rc --vars "project=demo" artifactory/go-local.json
+$ jf rt rc --vars "project=demo" artifactory/go-remote.json
+$ jf rt rc --vars "project=demo" artifactory/go.json
+$ jf rt rc --vars "project=demo" artifactory/docker-local.json
+$ jf rt rc --vars "project=demo" artifactory/docker-remote.json
+$ jf rt rc --vars "project=demo" artifactory/docker.json
 ```
 
 Pipelines

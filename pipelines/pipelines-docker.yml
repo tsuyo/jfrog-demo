@@ -8,7 +8,7 @@ resources:
       gitProvider: {{ .Values.gitRepo.provider }}
       path: {{ .Values.gitRepo.path }}
       files:
-        include: Dockerfile
+        include: {{ .Values.gitRepo.files.include }}
       # branches:
       #   include: {{ .Values.myRepo.branch }}
 
