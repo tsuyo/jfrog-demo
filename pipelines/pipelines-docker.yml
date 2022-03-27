@@ -12,7 +12,7 @@ resources:
       # branches:
       #   include: {{ .Values.myRepo.branch }}
 
-  - name: "{{ .Values.pipelines.name }}-{{ .Values.docker.image.name }}"
+  - name: "{{ .Values.pipelines.name }}_image"
     type: Image
     configuration:
       registry: {{ .Values.artifactory }}
