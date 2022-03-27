@@ -56,22 +56,22 @@ pipelines:
             # - echo "[TM] manually login to artifactory"
             # - echo ${int_{{ .Values.artifactory }}_apikey} | docker login --username {{ .Values.artifactoryRepo.username }} --password-stdin ${int_{{ .Values.artifactory }}_url}
 
-      # - name: docker_push
-      #   type: DockerPush
-      #   configuration:
-      #     affinityGroup: {{ .Values.pipelines.name }}
-      #     targetRepository: {{ .Values.artifactoryRepo.deployer.name }}
-      #     forceXrayScan: true
-      #     autoPublishBuildInfo: true
+      - name: docker_push
+        type: DockerPush
+        configuration:
+          affinityGroup: {{ .Values.pipelines.name }}
+          targetRepository: {{ .Values.artifactoryRepo.deployer.name }}
+          forceXrayScan: true
+          autoPublishBuildInfo: true
 
-      #     integrations:
-      #       - name: {{ .Values.artifactory }}
+          integrations:
+            - name: {{ .Values.artifactory }}
 
-      #     inputSteps:
-      #       - name: docker_build
-      #       ## !!! FROM HERE
-      #     outputResources:
-      #       - name: dbp_image
+          inputSteps:
+            - name: docker_build
+          outputResources:
+            - name: "{{ .Values.pipelines.name }}_image"
+            - name: {{ .Values.pipelines.name }}
 
       # - name: promote_build
       #   type: PromoteBuild
