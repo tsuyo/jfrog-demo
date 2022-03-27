@@ -1,10 +1,10 @@
 artifactory: artifactory
 pipelines:
-  name: jfrog_demo_docker
-  build:
-    name: jfrog_demo_build
+  name: jfrog_demo_core_docker
+  app:
+    name: jfrog_demo_core_app
 gitRepo:
-  name: github_jfrog_demo_docker
+  name: jfrog_demo_core_docker
   provider: github
   path: tsuyo/jfrog-demo
   files:
@@ -16,13 +16,12 @@ artifactoryRepo:
   deployer:
     name: demo-docker
   # promote:
-  #   name: demo-docker-prod-local
+  #   name: demo-docker-prod
   # username: admin
 docker:
   image:
     registry: platform.dev.gcp.tsuyo.org
-    name: jfrog-demo
-    # tag: latest
+    name: jfrog-demo-core
   file:
     location: .
     name: Dockerfile

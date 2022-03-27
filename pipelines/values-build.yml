@@ -1,10 +1,10 @@
 artifactory: artifactory
 pipelines:
-  name: jfrog_demo_build
+  name: jfrog_demo_core_app
 gitRepo:
-  name: github_jfrog_demo
+  name: jfrog_demo_core_app
   provider: github
-  path: tsuyo/jfrog-demo
+  path: tsuyo/jfrog-demo-core
   files:
     include: main.go|go.mod|go.sum
 artifactoryRepo:
@@ -13,4 +13,4 @@ artifactoryRepo:
   deployer:
     name: demo-go
 application:
-  name: jfrog_demo    
+  name: jfrog_demo_core

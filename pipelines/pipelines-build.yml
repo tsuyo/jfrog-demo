@@ -2,7 +2,6 @@ template: true
 valuesFilePath: ./values-build.yml
 
 resources:
-  # GitRepo
   - name: {{ .Values.gitRepo.name }}
     type: GitRepo
     configuration:
@@ -13,14 +12,10 @@ resources:
       # branches:
       #   include: main
 
-  # Build Info
   - name: {{ .Values.pipelines.name }}
     type: BuildInfo
     configuration:
       sourceArtifactory: {{ .Values.artifactory }}
-      # buildName and buildNumber are used for inputResources
-      # but these are overwritten with pipelines name when creating (as outputResources)
-      # buildName: {{ .Values.build.name }}
 
 
 pipelines:
@@ -60,10 +55,3 @@ pipelines:
           outputResources:
             - name: {{ .Values.pipelines.name }}
           
-      # - name: publish_build_info
-      #   type: PublishBuildInfo
-      #   configuration:
-      #     inputSteps:
-      #       - name: go_publish_binary
-      #     outputResources:
-      #       - name: {{ .Values.pipelines.name }}

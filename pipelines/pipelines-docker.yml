@@ -47,7 +47,7 @@ pipelines:
 
           inputResources:
             - name: {{ .Values.gitRepo.name }}
-            - name: {{ .Values.pipelines.build.name }}
+            - name: {{ .Values.pipelines.app.name }}
 
         execution:
           onStart:
