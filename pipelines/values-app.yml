@@ -2,7 +2,7 @@ artifactory: artifactory
 pipelines:
   name: jfrog_demo_core_app
 gitRepo:
-  name: jfrog_demo_core_app
+  name: jfrog_demo_core_app_gitrepo
   provider: github
   path: tsuyo/jfrog-demo-core
   files:

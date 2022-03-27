@@ -4,7 +4,7 @@ pipelines:
   app:
     name: jfrog_demo_core_app
 gitRepo:
-  name: jfrog_demo_core_docker
+  name: jfrog_demo_core_docker_gitrepo
   provider: github
   path: tsuyo/jfrog-demo
   files:

@@ -16,7 +16,7 @@ $ jf rt rc --vars "project=demo" artifactory/docker.json
 Pipelines
 - Select "demo" project -> Project Settings -> Integrations -> Add an Integration
   - GitHub
-    - Name:github
+    - Name: github
     - Integration Type: GitHub
     - Token: <your github token>
   - Artifactory
@@ -25,6 +25,15 @@ Pipelines
     - Artifactory URL: <default on UI>
     - User: admin
     - API Key: <press "Get API Key">
+
+- Select "demo" project -> Project Settings -> Pipeline Sources -> Add Pipeline Source -> From YAML
+  - Branch Type: Single Branch
+  - Protocol Type: HTTPS
+  - Name: jfrog_demo_core
+  - SCM Provider Integration: github
+  - Repository Full Name: tsuyo/jfrog-demo-core  
+  - Branch: main
+  - Pipeline Config File Filter: pipelines/pipelines-.+.yml
 
 ## Clean Up
 ```
