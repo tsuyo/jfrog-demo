@@ -15,12 +15,13 @@ artifactoryRepo:
     name: demo-docker
   deployer:
     name: demo-docker
-  promote:
-    name: demo-docker-prod-local
-  username: admin
+  # promote:
+  #   name: demo-docker-prod-local
+  # username: admin
 docker:
   image:
-    name: platform.dev.gcp.tsuyo.org/demo-docker/jfrog-demo
+    registry: platform.dev.gcp.tsuyo.org
+    name: jfrog-demo
     # tag: latest
   file:
     location: .

@@ -12,24 +12,23 @@ resources:
       # branches:
       #   include: {{ .Values.myRepo.branch }}
 
-  # - name: dbp_image
-  #   type: Image
-  #   configuration:
-  #     registry: {{ .Values.myArtifactory.name }}
-  #     sourceRepository: {{ .Values.myArtifactory.pushRepo }}
-  #     imageName: {{ .Values.docker.image.name }}
-  #     imageTag: {{ .Values.docker.image.tag }}
-  #     autoPull: true
+  - name: "{{ .Values.docker.image.registry }}/{{ .Values.artifactoryRepo.deployer.name }}/{{ .Values.docker.image.name }}"
+    type: Image
+    configuration:
+      registry: {{ .Values.artifactory }}
+      sourceRepository: {{ .Values.artifactoryRepo.deployer.name }}
+      imageName: "{{ .Values.docker.image.registry }}/{{ .Values.artifactoryRepo.deployer.name }}/{{ .Values.docker.image.name }}"
+      imageTag: ${run_number}
       
   - name: {{ .Values.pipelines.name }}
     type: BuildInfo
     configuration:
       sourceArtifactory: {{ .Values.artifactory }}
 
-  - name: "{{ .Values.pipelines.name }}_promoted"
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: {{ .Values.artifactory }}      
+  # - name: "{{ .Values.pipelines.name }}_promoted"
+  #   type: BuildInfo
+  #   configuration:
+  #     sourceArtifactory: {{ .Values.artifactory }}      
 
 pipelines:
   - name: {{ .Values.pipelines.name }}
@@ -40,7 +39,7 @@ pipelines:
           affinityGroup: {{ .Values.pipelines.name }}
           dockerFileLocation: {{ .Values.docker.file.location }}
           dockerFileName: {{ .Values.docker.file.name }}
-          dockerImageName: {{ .Values.docker.image.name }}
+          dockerImageName: "{{ .Values.docker.image.registry }}/{{ .Values.artifactoryRepo.deployer.name }}/{{ .Values.docker.image.name }}"
           dockerImageTag: ${run_number}
 
           integrations:
@@ -62,20 +61,17 @@ pipelines:
       #   configuration:
       #     affinityGroup: {{ .Values.pipelines.name }}
       #     targetRepository: {{ .Values.artifactoryRepo.deployer.name }}
+      #     forceXrayScan: true
+      #     autoPublishBuildInfo: true
+
       #     integrations:
       #       - name: {{ .Values.artifactory }}
+
       #     inputSteps:
       #       - name: docker_build
-      #     # outputResources:
-      #     #   - name: dbp_image
-
-      # - name: publish_build_info
-      #   type: PublishBuildInfo
-      #   configuration:
-      #     inputSteps:
-      #       - name: docker_push
+      #       ## !!! FROM HERE
       #     outputResources:
-      #       - name: {{ .Values.pipelines.name }}
+      #       - name: dbp_image
 
       # - name: promote_build
       #   type: PromoteBuild
