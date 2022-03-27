@@ -1,5 +1,5 @@
 template: true
-valuesFilePath: ./values-build.yml
+valuesFilePath: ./values-app.yml
 
 resources:
   - name: {{ .Values.gitRepo.name }}
