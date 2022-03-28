@@ -11,6 +11,8 @@ gitRepo:
     include: Dockerfile
   # branch: main
 artifactoryRepo:
+  app:
+    name: demo-go
   resolver:
     name: demo-docker
   deployer:
