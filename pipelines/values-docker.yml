@@ -18,6 +18,8 @@ artifactoryRepo:
   # promote:
   #   name: demo-docker-prod
   # username: admin
+application:
+  name: jfrog_demo_core
 docker:
   image:
     registry: platform.dev.gcp.tsuyo.org

@@ -10,7 +10,7 @@ resources:
       files:
         include: {{ .Values.gitRepo.files.include }}
       # branches:
-      #   include: {{ .Values.myRepo.branch }}
+      #   include: {{ .Values.gitRepo.branch }}
 
   - name: "{{ .Values.pipelines.name }}_image"
     type: Image
@@ -51,8 +51,8 @@ pipelines:
 
         execution:
           onStart:
-            - jfrog rt dl demo-go/jfrog_demo ${res_{{ .Values.gitRepo.name }}_resourcePath}/jfrog_demo
-            - chmod +x ${res_{{ .Values.gitRepo.name }}_resourcePath}/jfrog_demo
+            - jfrog rt dl demo-go/jfrog_demo ${res_{{ .Values.gitRepo.name }}_resourcePath}/{{ .Values.application.name }}
+            - chmod +x ${res_{{ .Values.gitRepo.name }}_resourcePath}/{{ .Values.application.name }}
             # - echo "[TM] manually login to artifactory"
             # - echo ${int_{{ .Values.artifactory }}_apikey} | docker login --username {{ .Values.artifactoryRepo.username }} --password-stdin ${int_{{ .Values.artifactory }}_url}
 
