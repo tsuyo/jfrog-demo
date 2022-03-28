@@ -41,6 +41,7 @@ pipelines:
           dockerFileName: {{ .Values.docker.file.name }}
           dockerImageName: "{{ .Values.docker.image.registry }}/{{ .Values.artifactoryRepo.deployer.name }}/{{ .Values.docker.image.name }}"
           dockerImageTag: ${run_number}
+          dockerOptions: --build-arg APP_NAME={{ .Values.application.name }}
 
           integrations:
             - name: {{ .Values.artifactory }}
