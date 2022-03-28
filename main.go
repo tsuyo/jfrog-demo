@@ -1,4 +1,3 @@
-// pipelines trigger: ##
 package main
 
 import (
@@ -37,7 +36,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	message := os.Getenv("MESSAGE")
 	version := os.Getenv("VERSION")
 	if message == "" {
-		message = "Hello, world Complete!!"
+		message = "Hello, World #3"
 	}
 	if version == "" {
 		version = "1.0.0"
