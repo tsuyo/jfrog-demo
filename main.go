@@ -36,7 +36,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	message := os.Getenv("MESSAGE")
 	version := os.Getenv("VERSION")
 	if message == "" {
-		message = "Hello, World #5"
+		message = "Hello, World #6"
 	}
 	if version == "" {
 		version = "1.0.0"
